@@ -1,6 +1,6 @@
 # docker-compose.yml
 
-version: '3.0'
+version: '3.6'
 services:
   jenkins:
     image: jenkins/jenkins:lts-jdk11
