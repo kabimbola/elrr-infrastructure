@@ -12,8 +12,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 sudo apt update -y
 sudo apt install docker-ce docker-ce-cli containerd.io -y
-sudo docker-compose.yml up -d
-sudo docker exec -it jenkins_master bash
-JENKINS_CREDS=$(cat /var/jenkins_home/secrets/initialAdminPassword)
-echo $(JENKINS_CREDS)
-exit
+sudo docker-compose up -d
