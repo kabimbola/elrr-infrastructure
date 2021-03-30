@@ -1,6 +1,6 @@
 # elrr-infrastructure
 
-This directory contains the code to install, configure, and run infrastructure associated with the Enterprise Learner Record Repository project.
+This directory contains the code to install, configure, and run infrastructure associated with the Enterprise Learner Record Repository project. example
 
 ## Intended use
 
