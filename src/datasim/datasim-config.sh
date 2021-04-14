@@ -3,13 +3,13 @@
 cd ../../../ >> /home/ubuntu/datasimlog.txt
 pwd >> /home/ubuntu/datasimlog.txt
 echo "run install script 1" >> /home/ubuntu/datasimlog.txt
-curl -O https://download.clojure.org/install/linux-install-1.10.1.754.sh
+sudo curl -O https://download.clojure.org/install/linux-install-1.10.1.754.sh
 sudo chmod +x linux-install-1.10.1.754.sh
 sudo ./linux-install-1.10.1.754.sh >> /home/ubuntu/datasimlog.txt
 echo "sleeping..." >> /home/ubuntu/datasimlog.txt
 sleep 20
 #git clone https://github.com/nvm-sh/nvm.git ~/.nvm >> /home/ubuntu/datasimlog.txt
-curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
+sudo curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
 echo "run install script 2" >> /home/ubuntu/datasimlog.txt
 sudo chmod +x install_nvm.sh >> /home/ubuntu/datasimlog.txt
 echo "changed mod" >> /home/ubuntu/datasimlog.txt
@@ -38,13 +38,15 @@ echo "git make and rlwrap installed" >> /home/ubuntu/datasimlog.txt
 #echo "cloning ELRR Repo..." >> /home/ubuntu/datasimlog.txt
 #git clone https://github.com/US-ELRR/Misc.git >> /home/ubuntu/datasimlog.txt
 echo "Cloning DATASIM repo..." >> /home/ubuntu/datasimlog.txt
-git clone https://github.com/yetanalytics/datasim.git >> /home/ubuntu/datasimlog.txt
+sudo git clone https://github.com/yetanalytics/datasim.git >> /home/ubuntu/datasimlog.txt
+sudo chown -R ubuntu:ubuntu datasim/
 cd datasim/
 touch .lein-env && echo "{:credentials generic:generic }" > .lein-env
 echo "cloned DATASIM repo. Added credential file" >> /home/ubuntu/datasimlog.txt
 cd ..
 echo "cloning DATASIM-UI repo..." >> /home/ubuntu/datasimlog.txt
-git clone https://github.com/yetanalytics/datasim-ui.git >> /home/ubuntu/datasimlog.txt
+sudo git clone https://github.com/yetanalytics/datasim-ui.git >> /home/ubuntu/datasimlog.txt
+sudo chown -R ubuntu:ubuntu datasim-ui/
 echo "cloned DATASIM-UI repo" >> /home/ubuntu/datasimlog.txt
 
 echo "Updating DATASIM/DATASIM-UI config with Public" >> /home/ubuntu/datasimlog.txt
