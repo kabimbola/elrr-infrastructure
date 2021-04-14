@@ -40,6 +40,7 @@ git clone https://github.com/US-ELRR/elrr-infrastructure.git >> /home/ubuntu/sta
 echo "ELRR infra repo cloned." >> /home/ubuntu/startlog.txt
 
 cd elrr-infrastructure/src/datasim >> /home/ubuntu/startlog.txt
+sudo chmod +x datasim-config.sh
 sudo -u ubuntu ./datasim-config.sh >> /home/ubuntu/startlog.txt
 
 fi
