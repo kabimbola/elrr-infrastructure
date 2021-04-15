@@ -1,5 +1,9 @@
 #!/bin/bash
 
+## To run this code, create an EC2 'Instance Template' within the AWS console and
+## copy/paste this code into the 'User Data' within the advanced tab.
+## Ensure that a Instance Type with at least 4 GB RAM is used (e.g., t2.medium)
+
 if [ ! -d "/home/datasim/code/datasim" ]
  then
 
@@ -13,6 +17,7 @@ wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64
 sudo dpkg -i amazon-ssm-agent.deb
 sudo systemctl enable amazon-ssm-agent
 
+# Start configuration for DATASIM folders and dependencies
 echo "making home folder" >> /home/ubuntu/startlog.txt
 if [ ! -d "/home/datasim" ]
  then
@@ -39,6 +44,11 @@ echo "Cloning ELRR infra repo..." >> /home/ubuntu/startlog.txt
 git clone https://github.com/US-ELRR/elrr-infrastructure.git >> /home/ubuntu/startlog.txt
 echo "ELRR infra repo cloned." >> /home/ubuntu/startlog.txt
 
+# Due to `nvm` not being installed as a Linux package, and AWS running the
+# Instance Template script as 'root' - we need to execute the set-up and config of
+# DATASIM within a sub-shell run as VM user, `ubuntu`. Running the entire script as
+# `root` will result in an incomplete install of nvm, which will cause an error in
+# compiling DATASIM.
 cd elrr-infrastructure/src/datasim >> /home/ubuntu/startlog.txt
 sudo chmod +x datasim-config.sh
 sudo -u ubuntu ./datasim-config.sh >> /home/ubuntu/startlog.txt
