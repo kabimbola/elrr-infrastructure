@@ -56,7 +56,7 @@ cd ../datasim-ui/
 echo "Launching DATASIM-UI FIG..." >> /home/ubuntu/datasimlog.txt
 make clean >> /home/ubuntu/datasimlog.txt
 screen -dm -S "DATASIM-UI-FIG" make fig # opening a separate shell for the DATASIM UI
-sleep 15
+sleep 30
 echo "DATASIM-UI FIG launched. Launching DATASIM-UI SASS server..." >> /home/ubuntu/datasimlog.txt
 screen -dm -S "DATASIM-UI-SASS" make build-sass
 echo "DATASIM-UI SASS server launched." >> /home/ubuntu/datasimlog.txt
