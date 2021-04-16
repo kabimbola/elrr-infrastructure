@@ -24,7 +24,6 @@ Content-Disposition: attachment; filename="userdata.txt"
 
 # Keep the below so the script will run on initial start-up and subsequent
 # restarts.
-echo "I am running!!" >> /home/ubuntu/startlog.txt
 
 if [ ! -d "/home/datasim/code/datasim" ] && [ ! -d "/home/datasim/code/datasim-ui" ]
  then
@@ -90,6 +89,7 @@ if [ ! -d "/home/datasim/code/datasim" ] && [ ! -d "/home/datasim/code/datasim-u
  sudo -u ubuntu ./datasim-config.sh >> /home/ubuntu/startlog.txt
 fi
 
+# boiler plate for SSM agent installation, needed for development sandbox
 . /etc/os-release
 OS_TYPE=$ID
 OS_VER=$VERSION_ID
