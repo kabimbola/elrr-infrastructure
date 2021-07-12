@@ -28,11 +28,6 @@ resource "aws_instance" "elrr_xapi_gateway" {
   }
 }
 
-resource "aws_key_pair" "elrr_public_kp" {
-  key_name = "elrr_public_kp"
-  public_key = file("key.pub")
-  }
-
 resource "aws_network_interface" "elrr_xapi_gw_network_interface" {
   subnet_id   = aws_subnet.elrr_xapi_gateway_subnet1.id
 
@@ -81,11 +76,6 @@ resource "aws_instance" "elrr_storage" {
   }
 }
 
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
-
 resource "aws_network_interface" "elrr_storage_interface" {
   subnet_id   = aws_subnet.elrr_storage_subnet2.id
 
@@ -123,11 +113,6 @@ resource "aws_instance" "elrr_local_staging" {
     volume_size = 30
   }
 }
-
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
 
 resource "aws_network_interface" "elrr_local_staging_interface" {
   subnet_id   = aws_subnet.elrr_local_staging_subnet.id
@@ -167,11 +152,6 @@ resource "aws_instance" "elrr_auth" {
   }
 }
 
-resource "aws_key_pair" "elrr_public_kp" {
-  key_name = "elrr_public_kp"
-  public_key = file("key.pub")
-  }
-
 resource "aws_network_interface" "elrr_auth_interface" {
   subnet_id   = aws_subnet.elrr_auth_subnet.id
 
@@ -209,11 +189,6 @@ resource "aws_instance" "elrr_portal" {
     volume_size = 30
   }
 }
-
-resource "aws_key_pair" "elrr_public_kp" {
-  key_name = "elrr_public_kp"
-  public_key = file("key.pub")
-  }
 
 resource "aws_network_interface" "elrr_portal_interface" {
   subnet_id   = aws_subnet.elrr_portal_subnet.id
@@ -253,11 +228,6 @@ resource "aws_instance" "elrr_kafka" {
   }
 }
 
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
-
 resource "aws_network_interface" "elrr_kafka_interface" {
   subnet_id   = aws_subnet.elrr_kafka_subnet.id
 
@@ -295,11 +265,6 @@ resource "aws_instance" "elrr_zookeeper" {
     volume_size = 30
   }
 }
-
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
 
 resource "aws_network_interface" "elrr_zookeeper_interface" {
   subnet_id   = aws_subnet.elrr_kafka_subnet.id
@@ -339,11 +304,6 @@ resource "aws_instance" "elrr_agent1" {
   }
 }
 
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
-
 resource "aws_network_interface" "elrr_agent1_interface" {
   subnet_id   = aws_subnet.elrr_agent_subnet.id
 
@@ -381,11 +341,6 @@ resource "aws_instance" "elrr_agent2" {
     volume_size = 30
   }
 }
-
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
 
 resource "aws_network_interface" "elrr_agent2_interface" {
   subnet_id   = aws_subnet.elrr_agent_subnet.id
@@ -425,11 +380,6 @@ resource "aws_instance" "elrr_agent3" {
   }
 }
 
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
-
 resource "aws_network_interface" "elrr_agent3_interface" {
   subnet_id   = aws_subnet.elrr_agent_subnet.id
 
@@ -467,11 +417,6 @@ resource "aws_instance" "elrr_agent4" {
     volume_size = 30
   }
 }
-
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
-  public_key = file("key.pub")
-  }
 
 resource "aws_network_interface" "elrr_agent4_interface" {
   subnet_id   = aws_subnet.elrr_agent_subnet.id
