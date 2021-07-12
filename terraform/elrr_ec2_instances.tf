@@ -29,7 +29,7 @@ resource "aws_instance" "elrr_xapi_gateway" {
 }
 
 resource "aws_key_pair" "elrr_public_kp" {
-  key_name = "elrr_xapi_gw_kp"
+  key_name = "elrr_public_kp"
   public_key = file("key.pub")
   }
 
@@ -137,10 +137,10 @@ resource "aws_network_interface" "elrr_local_staging_interface" {
   }
 }
 
-# creates EC2 instance for the ELRR Local Staging Component
+# creates EC2 instance for the ELRR auth
 
 resource "aws_instance" "elrr_auth" {
-  key_name      = aws_key_pair.elrr_private_kp.key_name
+  key_name      = aws_key_pair.elrr_public_kp.key_name
   ami           = "ami-0747bdcabd34c712a"
   instance_type = "t2.medium"
   associate_public_ip_address = true
@@ -167,8 +167,8 @@ resource "aws_instance" "elrr_auth" {
   }
 }
 
-resource "aws_key_pair" "elrr_private_kp" {
-  key_name = "elrr_private_kp"
+resource "aws_key_pair" "elrr_public_kp" {
+  key_name = "elrr_public_kp"
   public_key = file("key.pub")
   }
 
@@ -177,5 +177,306 @@ resource "aws_network_interface" "elrr_auth_interface" {
 
   tags = {
     Name = "elrr_auth_interface"
+  }
+}
+
+# creates EC2 instance for the ELRR portal
+
+resource "aws_instance" "elrr_portal" {
+  key_name      = aws_key_pair.elrr_public_kp.key_name
+  ami           = "ami-0747bdcabd34c712a"
+  instance_type = "t2.medium"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.elrr_auth_subnet.id
+
+  tags = {
+    Name = "elrr_portal"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.elrr_portal_sg.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+}
+
+resource "aws_key_pair" "elrr_public_kp" {
+  key_name = "elrr_public_kp"
+  public_key = file("key.pub")
+  }
+
+resource "aws_network_interface" "elrr_portal_interface" {
+  subnet_id   = aws_subnet.elrr_portal_subnet.id
+
+  tags = {
+    Name = "elrr_portal_interface"
+  }
+}
+
+# creates EC2 instance for the ELRR kafka
+
+resource "aws_instance" "elrr_kafka" {
+  key_name      = aws_key_pair.elrr_private_kp.key_name
+  ami           = "ami-0747bdcabd34c712a"
+  instance_type = "t2.medium"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.elrr_kafka_subnet.id
+
+  tags = {
+    Name = "elrr_kafka"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.elrr_kafka_sg.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+}
+
+resource "aws_key_pair" "elrr_private_kp" {
+  key_name = "elrr_private_kp"
+  public_key = file("key.pub")
+  }
+
+resource "aws_network_interface" "elrr_kafka_interface" {
+  subnet_id   = aws_subnet.elrr_kafka_subnet.id
+
+  tags = {
+    Name = "elrr_kafka_interface"
+  }
+}
+
+# creates EC2 instance for the ELRR zookeeper
+
+resource "aws_instance" "elrr_zookeeper" {
+  key_name      = aws_key_pair.elrr_private_kp.key_name
+  ami           = "ami-0747bdcabd34c712a"
+  instance_type = "t2.medium"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.elrr_kafka_subnet.id
+
+  tags = {
+    Name = "elrr_zookeeper"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.elrr_zookeeper_sg.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+}
+
+resource "aws_key_pair" "elrr_private_kp" {
+  key_name = "elrr_private_kp"
+  public_key = file("key.pub")
+  }
+
+resource "aws_network_interface" "elrr_zookeeper_interface" {
+  subnet_id   = aws_subnet.elrr_kafka_subnet.id
+
+  tags = {
+    Name = "elrr_zookeeper_interface"
+  }
+}
+
+# creates EC2 instance for the ELRR agent
+
+resource "aws_instance" "elrr_agent1" {
+  key_name      = aws_key_pair.elrr_private_kp.key_name
+  ami           = "ami-0747bdcabd34c712a"
+  instance_type = "t2.medium"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent1"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.elrr_agent_sg.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+}
+
+resource "aws_key_pair" "elrr_private_kp" {
+  key_name = "elrr_private_kp"
+  public_key = file("key.pub")
+  }
+
+resource "aws_network_interface" "elrr_agent1_interface" {
+  subnet_id   = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent1_interface"
+  }
+}
+
+# creates EC2 instance for the ELRR agent 2
+
+resource "aws_instance" "elrr_agent2" {
+  key_name      = aws_key_pair.elrr_private_kp.key_name
+  ami           = "ami-0747bdcabd34c712a"
+  instance_type = "t2.medium"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent2"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.elrr_agent_sg.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+}
+
+resource "aws_key_pair" "elrr_private_kp" {
+  key_name = "elrr_private_kp"
+  public_key = file("key.pub")
+  }
+
+resource "aws_network_interface" "elrr_agent2_interface" {
+  subnet_id   = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent2_interface"
+  }
+}
+
+# creates EC2 instance for the ELRR agent 3
+
+resource "aws_instance" "elrr_agent3" {
+  key_name      = aws_key_pair.elrr_private_kp.key_name
+  ami           = "ami-0747bdcabd34c712a"
+  instance_type = "t2.medium"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent3"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.elrr_agent_sg.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+}
+
+resource "aws_key_pair" "elrr_private_kp" {
+  key_name = "elrr_private_kp"
+  public_key = file("key.pub")
+  }
+
+resource "aws_network_interface" "elrr_agent3_interface" {
+  subnet_id   = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent3_interface"
+  }
+}
+
+# creates EC2 instance for the ELRR agent 4
+
+resource "aws_instance" "elrr_agent4" {
+  key_name      = aws_key_pair.elrr_private_kp.key_name
+  ami           = "ami-0747bdcabd34c712a"
+  instance_type = "t2.medium"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent4"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.elrr_agent_sg.id
+  ]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    volume_size = 30
+  }
+}
+
+resource "aws_key_pair" "elrr_private_kp" {
+  key_name = "elrr_private_kp"
+  public_key = file("key.pub")
+  }
+
+resource "aws_network_interface" "elrr_agent4_interface" {
+  subnet_id   = aws_subnet.elrr_agent_subnet.id
+
+  tags = {
+    Name = "elrr_agent4_interface"
   }
 }

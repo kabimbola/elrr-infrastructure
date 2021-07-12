@@ -85,9 +85,45 @@ resource "aws_subnet" "elrr_auth_subnet" {
   provider          = aws
   vpc_id            = aws_vpc.elrr_vpc.id
   availability_zone = element(data.aws_availability_zones.elrr-azs.names, 1)
-  cidr_block        = "10.0.2.0/24"
+  cidr_block        = "10.0.12.0/24"
 
   tags = {
     Name = "elrr_auth_subnet"
+  }
+}
+
+# Create elrr portal subnet in us-east-2
+resource "aws_subnet" "elrr_portal_subnet" {
+  provider          = aws
+  vpc_id            = aws_vpc.elrr_vpc.id
+  availability_zone = element(data.aws_availability_zones.elrr-azs.names, 1)
+  cidr_block        = "10.0.16.0/24"
+
+  tags = {
+    Name = "elrr_portal_subnet"
+  }
+}
+
+# Create elrr kafka subnet in us-east-2
+resource "aws_subnet" "elrr_kafka_subnet" {
+  provider          = aws
+  vpc_id            = aws_vpc.elrr_vpc.id
+  availability_zone = element(data.aws_availability_zones.elrr-azs.names, 1)
+  cidr_block        = "10.0.20.0/24"
+
+  tags = {
+    Name = "elrr_kafka_subnet"
+  }
+}
+
+# Create elrr agent subnet in us-east-2
+resource "aws_subnet" "elrr_agent_subnet" {
+  provider          = aws
+  vpc_id            = aws_vpc.elrr_vpc.id
+  availability_zone = element(data.aws_availability_zones.elrr-azs.names, 1)
+  cidr_block        = "10.0.24.0/24"
+
+  tags = {
+    Name = "elrr_agent_subnet"
   }
 }
