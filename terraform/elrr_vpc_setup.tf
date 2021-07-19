@@ -36,14 +36,14 @@ resource "aws_route_table" "elrr_route_table" {
   vpc_id   = aws_vpc.elrr_vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.elrr_internet_route.id
+    gateway_id = aws_internet_gateway.elrr_igw.id
   }
   tags = {
     Name = "elrr_route_table"
   }
 }
 
-# Create subnet # 1 in us-east-2
+# Create subnet in us-east-2
 resource "aws_subnet" "elrr_xapi_gateway_subnet" {
   provider          = aws
   availability_zone = element(data.aws_availability_zones.elrr-azs.names, 0)
@@ -56,7 +56,7 @@ resource "aws_subnet" "elrr_xapi_gateway_subnet" {
 }
 
 
-# Create subnet # 2  in us-east-2
+# Create subnet in us-east-2
 resource "aws_subnet" "elrr_storage_subnet" {
   provider          = aws
   vpc_id            = aws_vpc.elrr_vpc.id
@@ -68,7 +68,7 @@ resource "aws_subnet" "elrr_storage_subnet" {
   }
 }
 
-# Create subnet # 2  in us-east-2
+# Create subnet in us-east-2
 resource "aws_subnet" "elrr_local_staging_subnet" {
   provider          = aws
   vpc_id            = aws_vpc.elrr_vpc.id
@@ -80,7 +80,7 @@ resource "aws_subnet" "elrr_local_staging_subnet" {
   }
 }
 
-# Create elrr auth subnet in us-east-2
+# Create subnet in us-east-2
 resource "aws_subnet" "elrr_auth_subnet" {
   provider          = aws
   vpc_id            = aws_vpc.elrr_vpc.id
@@ -92,7 +92,7 @@ resource "aws_subnet" "elrr_auth_subnet" {
   }
 }
 
-# Create elrr portal subnet in us-east-2
+# Create subnet in us-east-2
 resource "aws_subnet" "elrr_portal_subnet" {
   provider          = aws
   vpc_id            = aws_vpc.elrr_vpc.id
@@ -125,5 +125,17 @@ resource "aws_subnet" "elrr_agent_subnet" {
 
   tags = {
     Name = "elrr_agent_subnet"
+  }
+}
+
+# Create elrr xapi gateway subnet in us-east-2
+resource "aws_subnet" "elrr_xapi_gateway_subnet" {
+  provider          = aws
+  vpc_id            = aws_vpc.elrr_vpc.id
+  availability_zone = element(data.aws_availability_zones.elrr-azs.names, 1)
+  cidr_block        = "10.0.28.0/24"
+
+  tags = {
+    Name = "elrr_xapi_gateway_subnet"
   }
 }

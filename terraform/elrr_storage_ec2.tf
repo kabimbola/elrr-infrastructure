@@ -5,7 +5,7 @@ resource "aws_instance" "elrr_storage" {
   ami           = "ami-0747bdcabd34c712a"
   instance_type = "t2.medium"
   associate_public_ip_address = true
-  subnet_id = aws_subnet.elrr_storage_subnet2.id
+  subnet_id = aws_subnet.elrr_storage_subnet.id
 
   tags = {
     Name = "elrr_storage"
@@ -33,7 +33,7 @@ resource "aws_instance" "elrr_storage" {
 }
 
 resource "aws_network_interface" "elrr_storage_interface" {
-  subnet_id   = aws_subnet.elrr_storage_subnet2.id
+  subnet_id   = aws_subnet.elrr_storage_subnet.id
 
   tags = {
     Name = "elrr_storage_interface"
