@@ -80,6 +80,7 @@ resource "aws_network_interface" "elrr_agent2_interface" {
   tags = {
     Name = "elrr_agent2_interface"
   }
+}  
 
 # creates EC2 instance for the ELRR agent 3
 
