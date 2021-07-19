@@ -44,27 +44,27 @@ resource "aws_route_table" "elrr_route_table" {
 }
 
 # Create subnet # 1 in us-east-2
-resource "aws_subnet" "elrr_xapi_gateway_subnet1" {
+resource "aws_subnet" "elrr_xapi_gateway_subnet" {
   provider          = aws
   availability_zone = element(data.aws_availability_zones.elrr-azs.names, 0)
   vpc_id            = aws_vpc.elrr_vpc.id
   cidr_block        = "10.0.6.0/24"
 
   tags = {
-    Name = "elrr_xapi_gateway_subnet1"
+    Name = "elrr_xapi_gateway_subnet"
   }
 }
 
 
 # Create subnet # 2  in us-east-2
-resource "aws_subnet" "elrr_storage_subnet2" {
+resource "aws_subnet" "elrr_storage_subnet" {
   provider          = aws
   vpc_id            = aws_vpc.elrr_vpc.id
   availability_zone = element(data.aws_availability_zones.elrr-azs.names, 1)
   cidr_block        = "10.0.8.0/24"
 
   tags = {
-    Name = "elrr_storage_subnet2"
+    Name = "elrr_storage_subnet"
   }
 }
 
