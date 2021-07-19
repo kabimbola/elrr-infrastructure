@@ -71,6 +71,7 @@ resource "aws_instance" "elrr_agent2" {
 
   user_data {
     file = "user_data/elrr_agent.txt"
+    }
 }
 
 resource "aws_network_interface" "elrr_agent2_interface" {
@@ -79,11 +80,6 @@ resource "aws_network_interface" "elrr_agent2_interface" {
   tags = {
     Name = "elrr_agent2_interface"
   }
-
-  user_data {
-    file = "user_data/elrr_agent.txt"
-  }
-}
 
 # creates EC2 instance for the ELRR agent 3
 
