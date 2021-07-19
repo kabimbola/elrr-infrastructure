@@ -127,15 +127,3 @@ resource "aws_subnet" "elrr_agent_subnet" {
     Name = "elrr_agent_subnet"
   }
 }
-
-# Create elrr xapi gateway subnet in us-east-2
-resource "aws_subnet" "elrr_xapi_gateway_subnet" {
-  provider          = aws
-  vpc_id            = aws_vpc.elrr_vpc.id
-  availability_zone = element(data.aws_availability_zones.elrr-azs.names, 1)
-  cidr_block        = "10.0.28.0/24"
-
-  tags = {
-    Name = "elrr_xapi_gateway_subnet"
-  }
-}
