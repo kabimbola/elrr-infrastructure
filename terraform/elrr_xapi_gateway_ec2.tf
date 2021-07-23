@@ -8,7 +8,7 @@ resource "aws_instance" "elrr_xapi_gateway" {
   subnet_id = aws_subnet.elrr_xapi_gateway_subnet.id
 
   tags = {
-    Name = "elrr_xapi_gateway"
+    Name = "var.xapi_gateway_ec2"
   }
 
   vpc_security_group_ids = [

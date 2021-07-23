@@ -8,7 +8,7 @@ resource "aws_instance" "elrr_portal" {
   subnet_id = aws_subnet.elrr_auth_subnet.id
 
   tags = {
-    Name = "elrr_portal"
+    Name = "var.portal_ec2"
   }
 
   vpc_security_group_ids = [

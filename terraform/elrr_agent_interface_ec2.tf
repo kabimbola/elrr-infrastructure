@@ -8,7 +8,7 @@ resource "aws_instance" "elrr_agent1" {
   subnet_id = aws_subnet.elrr_agent_subnet.id
 
   tags = {
-    Name = "elrr_agent1"
+    Name = "var.agent1_ec2"
   }
 
   vpc_security_group_ids = [
@@ -50,7 +50,7 @@ resource "aws_instance" "elrr_agent2" {
   subnet_id = aws_subnet.elrr_agent_subnet.id
 
   tags = {
-    Name = "elrr_agent2"
+    Name = "var.agent2_ec2"
   }
 
   vpc_security_group_ids = [
@@ -80,7 +80,7 @@ resource "aws_network_interface" "elrr_agent2_interface" {
   tags = {
     Name = "elrr_agent2_interface"
   }
-}  
+}
 
 # creates EC2 instance for the ELRR agent 3
 
@@ -92,7 +92,7 @@ resource "aws_instance" "elrr_agent3" {
   subnet_id = aws_subnet.elrr_agent_subnet.id
 
   tags = {
-    Name = "elrr_agent3"
+    Name = "var.agent3_ec2"
   }
 
   vpc_security_group_ids = [
@@ -134,7 +134,7 @@ resource "aws_instance" "elrr_agent4" {
   subnet_id = aws_subnet.elrr_agent_subnet.id
 
   tags = {
-    Name = "elrr_agent4"
+    Name = "var.agent4_ec2"
   }
 
   vpc_security_group_ids = [

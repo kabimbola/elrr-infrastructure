@@ -8,7 +8,7 @@ resource "aws_instance" "elrr_local_staging" {
   subnet_id = aws_subnet.elrr_local_staging_subnet.id
 
   tags = {
-    Name = "elrr_local_staging"
+    Name = "var.local_staging_ec2"
   }
 
   vpc_security_group_ids = [

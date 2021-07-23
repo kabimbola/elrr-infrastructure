@@ -8,7 +8,7 @@ resource "aws_instance" "elrr_storage" {
   subnet_id = aws_subnet.elrr_storage_subnet.id
 
   tags = {
-    Name = "elrr_storage"
+    Name = "var.storage_ec2"
   }
 
   vpc_security_group_ids = [

@@ -8,7 +8,7 @@ resource "aws_instance" "elrr_kafka" {
   subnet_id = aws_subnet.elrr_kafka_subnet.id
 
   tags = {
-    Name = "elrr_kafka"
+    Name = "var.kafka_ec2"
   }
 
   vpc_security_group_ids = [
@@ -46,7 +46,7 @@ resource "aws_instance" "elrr_zookeeper" {
   subnet_id = aws_subnet.elrr_kafka_subnet.id
 
   tags = {
-    Name = "elrr_zookeeper"
+    Name = "var.zookeeper_ec2"
   }
 
   vpc_security_group_ids = [
