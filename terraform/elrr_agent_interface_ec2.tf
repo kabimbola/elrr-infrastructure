@@ -27,9 +27,7 @@ resource "aws_instance" "elrr_agent1" {
     volume_size = 30
   }
 
-  user_data {
-    file = "user_data/elrr_agent.txt"
-  }
+  user_data  = "user_data/elrr_agent.txt"
 }
 
 resource "aws_network_interface" "elrr_agent1_interface" {
@@ -69,9 +67,7 @@ resource "aws_instance" "elrr_agent2" {
     volume_size = 30
   }
 
-  user_data {
-    file = "user_data/elrr_agent.txt"
-    }
+  user_data  = "user_data/elrr_agent.txt"
 }
 
 resource "aws_network_interface" "elrr_agent2_interface" {
@@ -111,9 +107,7 @@ resource "aws_instance" "elrr_agent3" {
     volume_size = 30
   }
 
-  user_data {
-    file = "user_data/elrr_agent.txt"
-  }
+  user_data  = "user_data/elrr_agent.txt"
 }
 
 resource "aws_network_interface" "elrr_agent3_interface" {
@@ -152,9 +146,7 @@ resource "aws_instance" "elrr_agent4" {
     volume_type = "gp2"
     volume_size = 30
   }
-  user_data {
-    file = "user_data/elrr_agent.txt"
-  }
+  user_data  = "user_data/elrr_agent.txt"
 }
 
 resource "aws_network_interface" "elrr_agent4_interface" {

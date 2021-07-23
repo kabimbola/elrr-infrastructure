@@ -27,9 +27,7 @@ resource "aws_instance" "elrr_auth" {
     volume_size = 30
   }
 
-  user_data {
-    file = "user_data/elrr_auth.txt"
-  }
+  user_data = "user_data/elrr_auth.txt"
 }
 
 resource "aws_network_interface" "elrr_auth_interface" {

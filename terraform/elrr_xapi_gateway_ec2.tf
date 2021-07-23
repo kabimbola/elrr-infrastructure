@@ -27,9 +27,7 @@ resource "aws_instance" "elrr_xapi_gateway" {
     volume_size = 30
   }
 
-  user_data {
-    file = "user_data/elrr_xapi_gateway.txt"
-  }
+  user_data = "user_data/elrr_xapi_gateway.txt"
 }
 
 resource "aws_network_interface" "elrr_xapi_gw_network_interface" {

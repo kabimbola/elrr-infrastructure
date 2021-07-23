@@ -26,6 +26,7 @@ resource "aws_instance" "elrr_kafka" {
     volume_type = "gp2"
     volume_size = 30
   }
+  user_data = "user_data/elrr_kafka.txt"
 }
 
 resource "aws_network_interface" "elrr_kafka_interface" {
@@ -65,9 +66,7 @@ resource "aws_instance" "elrr_zookeeper" {
     volume_size = 30
   }
 
-  user_data {
-    file = "user_data/elrr_kafka.txt"
-  }
+  user_data = "user_data/elrr_kafka.txt"
 }
 
 resource "aws_network_interface" "elrr_zookeeper_interface" {

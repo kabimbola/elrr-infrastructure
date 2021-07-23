@@ -27,9 +27,7 @@ resource "aws_instance" "elrr_local_staging" {
     volume_size = 30
   }
 
-  user_data {
-    file = "user_data/elrr_local_staging.txt"
-  }
+  user_data = "user_data/elrr_local_staging.txt"
 }
 
 resource "aws_network_interface" "elrr_local_staging_interface" {
